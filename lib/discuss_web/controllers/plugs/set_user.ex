@@ -1,9 +1,12 @@
 defmodule DisussWeb.Plugs.SetUser do
+  use DiscussWeb, :controller
   import Plug.Conn
   import Phoenix.Controller
 
   alias DiscussWeb.User
-  alias Disuss.Repo
+
+
+
 
 
   def init(_params) do
@@ -14,9 +17,8 @@ defmodule DisussWeb.Plugs.SetUser do
     user_id =get_session(conn, :user_id)
 
     cond do
-      user = user_id && Repo.get(User, user_id) ->
+      user = user_id && Discuss.Repo.get(User, user_id) ->
         assign(conn, :user, user)
-        #conn.assigns.user => user struct
       true ->
         assign(conn, :user, nil)
     end

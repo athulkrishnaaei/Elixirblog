@@ -9,7 +9,7 @@ defmodule DiscussWeb.Router do
     plug :put_root_layout, {DiscussWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    # plug DiscussWeb.Plugs.SetUser
+    plug DisussWeb.Plugs.SetUser
   end
 
   pipeline :api do
@@ -25,13 +25,14 @@ defmodule DiscussWeb.Router do
     # get "/topics/:id/edit", TopicController, :edit
     # put "/topics/:id/", TopicController, :update
     resources "/", TopicController
-
+    get "auth/signout", TopicController, :signout
 
   end
   scope "/auth", DiscussWeb do
      pipe_through :browser
      get "/:provider", TopicController, :request
      get "/:provider/callback", TopicController, :callback
+
     #  get "/hai", PageController, :ne
   end
 
