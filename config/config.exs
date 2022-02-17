@@ -60,3 +60,7 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
    client_id: "370275ee8536346c9cbb",
    client_secret: "6c2142b828c286eebba6ae66d999096862c8c703"
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, [allow_private_emails: true]}
+  ]
