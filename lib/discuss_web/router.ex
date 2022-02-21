@@ -29,11 +29,11 @@ defmodule DiscussWeb.Router do
 
   end
   scope "/auth", DiscussWeb do
+
      pipe_through :browser
      get "/:provider", TopicController, :request
      get "/:provider/callback", TopicController, :callback
 
-    #  get "/hai", PageController, :ne
   end
 
   # Other scopes may use custom stacks.
